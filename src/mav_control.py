@@ -88,6 +88,7 @@ class MavControl(ButtonGui):
         print("Up")
         self.controller.SetCommand(roll=0, pitch=0,
           yaw_velocity=0, z_velocity=0.5)
+        self.pbTest.setValue(self.pbTest.value() + 10)
 
     def on_pbUp_released(self):
         print("Up done.")

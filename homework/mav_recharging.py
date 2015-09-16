@@ -151,6 +151,9 @@ class TestLastIsDifferent(object):
 # TestMav class
 # -------------
 class TestMav(object):
+    def test_0(self):
+        assert False
+
     # Fly a set of missions, testing at all times.
     def fly_missions(self,
           # See fly_time_sec_.
