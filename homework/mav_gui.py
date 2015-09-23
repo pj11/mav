@@ -32,13 +32,15 @@ class MyDialog(QDialog):
         # `Load <http://pyqt.sourceforge.net/Docs/PyQt4/designer.html#PyQt4.uic.loadUi>`_ in our UI. The secord parameter lods the resulting UI directly into this class.
         uic.loadUi(join(dirname(__file__), 'mav_gui.ui'), self)
 
-#        QTimer.singleShot(10500, self._onTimeout)
-        self._timer = QTimer(self)
-        self._timer.timeout.connect(self._onTimeout)
-        self._timer.start(1500)
-
-    def _onTimeout(self):
-        self.hsFlyTime.setValue(50)
+##        QTimer.singleShot(10500, self._onTimeout)
+##        self._timer = QTimer(self)
+##        self._timer.timeout.connect(self._onTimeout)
+##        self._timer.start(1500)
+##
+##    def _onTimeout(self):
+##        self.hsFlyTime.setValue(50)
+    def on_hsFlyTime_valueChanged(self, value):
+        self.leFlyTime.setText(str(value))
 #
 # Main
 # ====
@@ -53,7 +55,7 @@ def main():
     # Main loop.
     qa.exec_()
 
-    md._timer.stop()
+##    md._timer.stop()
 
 if __name__ == '__main__':
     main()
