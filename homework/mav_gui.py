@@ -18,7 +18,7 @@ import sip
 sip.setapi('QString', 2)
 sip.setapi('QVariant', 2)
 
-from PyQt4.QtGui import QApplication, QDialog
+from PyQt4.QtGui import QApplication, QDialog, QIntValidator
 from PyQt4.QtCore import QTimer
 from PyQt4 import uic
 #
@@ -32,6 +32,10 @@ class MyDialog(QDialog):
         # `Load <http://pyqt.sourceforge.net/Docs/PyQt4/designer.html#PyQt4.uic.loadUi>`_ in our UI. The secord parameter lods the resulting UI directly into this class.
         uic.loadUi(join(dirname(__file__), 'mav_gui.ui'), self)
 
+        # Only allow numbers between 0 and 99 for the lien edits.
+        flyTimeValidator = QIntValidator(0, 99, self)
+        self.leFlyTime.setValidator(flyTimeValidator)
+
 ##        QTimer.singleShot(10500, self._onTimeout)
 ##        self._timer = QTimer(self)
 ##        self._timer.timeout.connect(self._onTimeout)
@@ -41,6 +45,9 @@ class MyDialog(QDialog):
 ##        self.hsFlyTime.setValue(50)
     def on_hsFlyTime_valueChanged(self, value):
         self.leFlyTime.setText(str(value))
+
+    def on_leFlyTime_editingFinished(self):
+        print(self.leFlyTime.text())
 #
 # Main
 # ====
